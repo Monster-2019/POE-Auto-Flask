@@ -8,7 +8,7 @@ POE Auto Flask 是一个 window 桌面应用，可以通过以下方式使用：
 
 1. 下载并解压 POE 自动药技能
 2. 打开 POE 自动药技能.exe，将看到下面的界面
-   ![POE界面]('./example.jpg')
+   ![POE界面](example.jpg)
 
 3. 配置自动技能和自动吃药
 

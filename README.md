@@ -1,4 +1,4 @@
-# EasyTasks
+# POE Auto Flask
 
 POE Auto Flask 是一个百分比自动吃药，自动释放有冷却光环的工具。
 

@@ -16,7 +16,7 @@ class MyPotionSkillFrams(customtkinter.CTkFrame):
         self.configure(fg_color="#ebebeb")
         self.grid_columnconfigure((0,1,2), weight=1)
 
-        self.optionmenu = customtkinter.CTkOptionMenu(self, values=["自动技能", "百分比吃药"],
+        self.optionmenu = customtkinter.CTkOptionMenu(self, values=["自动技能", "百分比吃药", "自动瓦尔技能"],
                                          command=self.optionmenu_callback)
         self.optionmenu.set(self.type)
         self.optionmenu.grid(row=0, column=0, padx=10, pady=10, sticky="ew")
@@ -33,6 +33,9 @@ class MyPotionSkillFrams(customtkinter.CTkFrame):
         if self.type == '百分比吃药':
             placeholder_key = "药剂键位"
             placeholder_value = "百分比"
+        if self.type == '自动瓦尔技能':
+            placeholder_key = "瓦尔技能键位"
+            placeholder_value = "请输入一个空格"
         if self.key:
             self.entry1 = customtkinter.CTkEntry(self, placeholder_text=placeholder_key, textvariable=tk.StringVar(value=self.key))
         else:
@@ -87,17 +90,20 @@ class PotionSkillGUI(customtkinter.CTk):
         self.config = []
 
         self.title("POE 自动药技能")
-        self.geometry("500x200")
-        self.grid_columnconfigure(0, weight=1)
-        self.grid_rowconfigure(0, weight=1)
-
+        self.geometry("475x268")
         for i in range(3):
+            self.grid_columnconfigure(i, weight=1)
+        
+        for i in range(6):
+            self.grid_rowconfigure(i, weight=1)
+
+        for i in range(5):
             MyPotionSkill = MyPotionSkillFrams(self, self.configData[i], i)
             MyPotionSkill.grid(row=i, column=0, padx=0, pady=0, sticky="ew")
             self.config.append(MyPotionSkill)
 
         self.MyButtonFrams = MyButtonFrams(self)
-        self.MyButtonFrams.grid(row=3, column=0, padx=0, pady=0, sticky="sew")
+        self.MyButtonFrams.grid(row=6, column=0, padx=0, pady=0, sticky="sew")
 
         keyboard.add_hotkey('F2', self.MyButtonFrams.start)
 
@@ -115,5 +121,8 @@ if __name__ == "__main__":
     try:
         app = PotionSkillGUI()
         app.mainloop()
-    except Exception:
+    except Exception as e:
+        print("发生异常：", e)
+        import traceback
+        print("详细信息：", traceback.format_exc())
         os._exit(0)
